@@ -1,0 +1,181 @@
+<html>
+<body>
+<div id="KT" class="KaufTease">
+<span id= "BPN" class= "BuyProofName">   </span> , aus <span id= "BPO" class= "BuyProofOrt"> </span> <br>
+hat dies auch gekauft! <br>
+vor <span id= "Zeit1" class= "BuyProofZeit"> </span> Stunden. <span id="timer2" class= "Timer"> </span> 
+</div>
+</body>
+
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+<script>
+document.getElementById('BPN').innerHTML = "Heinz K";
+document.getElementById('BPO').innerHTML = "Dortmund";
+document.getElementById('Zeit1').innerHTML = "12";
+document.getElementById('timer2').innerHTML = 10;
+var x = 0;
+var y = 0;
+var z = 0;
+Popupad();
+
+
+
+function Popupad() 
+{
+ var Ort = document.getElementById('BPO').innerHTML;
+ var Name = document.getElementById('BPN').innerHTML;
+ var Zeit = document.getElementById('Zeit1').innerHTML;
+ var Timer = document.getElementById('timer2').innerHTML;
+ var NameArray = [ 	"Christian K." , 
+		"Jana A." , 
+		"Felix E." , 
+		"Marina H. ", 
+		"Ulrike W.", 
+		"Swen B." , 
+		"Petra A.", 
+		"Michael F.",
+		"Patrick S.",
+		"Jana F.",
+		"Mike B.",
+		"Heike D.",
+		"Lucas B.",
+		"Uwe T.",
+		"Angelika F.",
+		"Monika V.",
+		"Ulrich S.",
+		"Klaus S.",
+		"Sophie M.",
+		"Tobias K.",
+		"Marie K.",
+		"Patrick S.",
+		"Annett F.",
+		"Marco E.",
+		"Ines S.",
+		"Nicole K.",
+		"Stephanie D.",
+		"Tobias M.",
+		"Mario T.",
+		"Steffen K."
+
+]
+ var OrtArray = [ 	"Berlin", 
+		"Hamburg",
+		"München" ,
+		"Köln", 
+		"Frankfurt" , 
+		"Stuttgart" , 
+		"Düsseldorf",
+		"Dortmund",
+		"Essen",
+		"Leipzig",
+		"Bremen",
+		"Dresden",
+		"Hannover",
+		"Nürnberg",
+		"Duisburg",
+		"Bochum",
+		"Wuppertal",
+		"Bielefeld",
+		"Bonn",
+		"Münster",
+		"Karlsruhe",
+		"Mannheim",
+		"Augsburg",
+		"Wiesbaden",
+		"Gelsenkirchen",
+		"Mönchen­gladbach",
+		"Braunschweig",
+		"Chemnitz",
+		"Kiel",
+		"Aachen",
+              
+
+]
+ var ZeitArray = [	"22",
+		"vier",
+		"12",
+		"4",
+		"fünf",
+		"sieben",
+		"drei",
+		"16",
+		"18",
+		"9",
+		"einer",
+		"21",
+		"13",
+		"22",
+		"vier",
+		"18",
+		"10",
+		"13",
+		"einer",
+		"12",
+		"23",
+		"22",
+		"vier",
+		"sieben",
+		"12",
+		"21",
+		"6",
+		"22",
+		"24",
+		"12",
+]
+ var Alenght = NameArray.length;
+ var s = Math.ceil(Timer-1);
+
+ if(s==5){
+ fadeOut(KT);
+ 
+  }
+ if(s==0){
+  fadeIn(KT);
+  var Name = NameArray[x++];
+  var Ort = OrtArray[y++];
+  var Zeit = ZeitArray[z++];
+  document.getElementById('BPN').innerHTML = Name;
+  document.getElementById('BPO').innerHTML = Ort;
+  document.getElementById('Zeit1').innerHTML = Zeit;
+  var s = 10;
+  if(Name =="Steffen K."&&Ort == "Aachen"&&Zeit == "12"){
+    x = 0;
+    y = 0;
+    z = 0;
+}
+}
+  
+  document.getElementById('timer2').innerHTML = s;
+  setTimeout(Popupad, 1000);
+  
+}
+function fadeOut(element) {
+    var opacity = 1;
+    function decrease () {
+        opacity -= 0.05;
+        if (opacity <= 0){
+            // complete
+            element.style.opacity = 0;
+            return true;
+        }
+        element.style.opacity = opacity;
+        requestAnimationFrame(decrease);
+    }
+    decrease();
+}
+function fadeIn(element) {
+    var opacity = 0;
+    function increase () {
+        opacity += 0.05;
+        if (opacity >= 1){
+            // complete
+            element.style.opacity = 1;
+            return true;
+        }
+        element.style.opacity = opacity;
+        requestAnimationFrame(increase);
+    }
+    increase();
+}
+</script>
+</html>

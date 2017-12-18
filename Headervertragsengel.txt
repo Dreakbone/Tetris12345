@@ -1,0 +1,114 @@
+css:
+.TeaseHead
+{
+    position: fixed;
+    background: none;
+    color: #444444;
+    z-index: 9999;
+    width: 100%;
+    top: 85px;
+    left: 40px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.Auftraege1
+{
+  margin-left: 20px;
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  z-index: 9999;
+  
+}
+
+.Geld
+{
+  margin-left: 20px;
+  font-size: 16px;
+  font-style: normal;
+  color: #000;
+  z-index: 9999;
+}
+.BA1
+{
+    margin-left: 60px;
+}
+.BG1
+{
+    margin-left: 60px;
+}
+
+
+<html>
+
+
+<header>
+<div class="TeaseHead">
+<img class="BA1" src="wp-content/uploads/2017/12/001-edit-a-document-interface-symbol-of-stroke.png" >Verträge umgestellt: <span id="Auftraege" class="Auftraege1"> </span> <img class="BG1" src="wp-content/uploads/2017/12/002-coins.png"> dabei Geld gespart <span id="Geld" class="Geld"> </span> € Time left until midnight: <span id='HMSremaining'></span>
+</div>
+</header>
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+
+<script>
+var Auftt = window.setInterval(CountA, 5);
+var Geldt = window.setInterval(CountG, 1);
+document.getElementById('Auftraege').value = 5;
+document.getElementById('Geld').value = 600;
+calculateHMSleft();
+setInterval(calculateHMSleft, 1000);
+CountA();
+CountG();
+
+function CountG(){
+var Gmax = 25600;
+var GA = document.getElementById('Geld').value;
+var StepG = Math.ceil(GA+15);
+if(StepG >= Gmax){
+window.clearInterval(Geldt);
+}
+
+document.getElementById('Geld').innerHTML = StepG;
+document.getElementById('Geld').value = StepG;
+
+}
+
+function CountA(){
+var Amax = 5000;  
+var CA = document.getElementById('Auftraege').value;
+var StepA = Math.ceil(CA+5);
+if(StepA >= Amax){
+window.clearInterval(Auftt);
+}
+
+document.getElementById('Auftraege').value = StepA;
+document.getElementById('Auftraege').innerHTML = StepA;
+}
+
+function calculateHMSleft()
+{
+	//calculate
+	var now = new Date();
+	var hoursleft = 23-now.getHours();
+	var minutesleft = 59-now.getMinutes();
+	var secondsleft = 59-now.getSeconds();
+
+	//format 0 prefixes
+	if(minutesleft<10) minutesleft = "0"+minutesleft;
+	if(secondsleft<10) secondsleft = "0"+secondsleft;
+
+	//display
+	document.getElementById('HMSremaining').innerHTML =(hoursleft+":"+minutesleft+":"+secondsleft);
+
+        if(hoursleft=="0" && minutesleft=="0" && secondsleft=="0"){
+        var hoursleft = 23;
+        var minutesleft = 59;
+        var secondsleft = 59;
+        var Amax = Math.ceil(Amax+1);
+        var Gmax = Math.ceil(Gmax+1);
+        }
+
+}
+
+
+</script>
+</html>
